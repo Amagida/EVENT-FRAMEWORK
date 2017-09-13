@@ -1,2 +1,2 @@
-# EVENT-FRAMEWORK
-Dynamic, Object Oriented Code. 
+# Dynamic Event System
+Dynamic, Object Oriented Code.
