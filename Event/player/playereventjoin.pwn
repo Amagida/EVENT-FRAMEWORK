@@ -14,7 +14,9 @@ stock EVENTP::Join(eventid, playerid)
 	EVENTP::JoinedID[playerid] = eventid;
 	EVENTP::Spawn(eventid, playerid);
 	EVENTP::IsInRangeChecker[playerid] = SetTimerEx("eventp_CheckPlayerInRange", 150, 1, "d", playerid);
-	if(funcidx("eventp_OnPlayerJoin") != -1) CallLocalFunction("eventp_OnPlayerJoin", "ddd", playerid, eventid, Event[eventid][Event::Style]); 
+	#if defined eventp_OnPlayerJoin
+		CallLocalFunction("eventp_OnPlayerJoin", "ddd", playerid, eventid, Event[eventid][Event::Style]); 
+	#endif
 	return 1;
 }
 
