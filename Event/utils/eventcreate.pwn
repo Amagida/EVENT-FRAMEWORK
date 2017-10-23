@@ -56,7 +56,9 @@ stock Event::Create(Name[], Float:x, Float:y, Float:z, Float:SpawnX, Float:Spawn
 	Event[Event::Created][Event::MaxPlayers] = MaxPlayers;
 	Event[Event::Created][Event::LeftPlayers] = 0;
 	Event[Event::Created][Event::PlayerCantJoin] = false;
-	if(funcidx("event_OnCreate") != -1) CallLocalFunction("event_OnCreate","dfffffffdddd", Event::Created,x,y,z,SpawnX,SpawnY,SpawnZ,range,vw,int,style,MaxPlayers);
+	#if defined event_OnCreate
+		CallLocalFunction("event_OnCreate","dfffffffdddd", Event::Created,x,y,z,SpawnX,SpawnY,SpawnZ,range,vw,int,style,MaxPlayers);
+	#endif
 	return 1;
 
 }	
