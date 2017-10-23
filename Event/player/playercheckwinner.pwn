@@ -9,7 +9,9 @@ public Event::CheckWinner()
 	{
 		if(Event[EVENTP::JoinedID[i]][Event::LeftPlayers] == 1)
 		{
-			if(funcidx("eventp_OnPlayerWin") != -1) CallLocalFunction("eventp_OnPlayerWin","dd", i, EVENTP::JoinedID[i]);
+			#if defined eventp_OnPlayerWin
+				CallLocalFunction("eventp_OnPlayerWin","dd", i, EVENTP::JoinedID[i]);
+			#endif
 			Event[EVENTP::JoinedID[i]][Event::Started] = false;
 			Event[EVENTP::JoinedID[i]][Event::PlayerCantJoin] = false;
 			Event[EVENTP::JoinedID[i]][Event::LeftPlayers] = 0;
