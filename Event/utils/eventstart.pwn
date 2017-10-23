@@ -10,7 +10,9 @@ stock Event::Start(eventid, intime)
 {
 	Event[eventid][Event::Started] = true;
 	Event::StartTime = intime;
-	if(funcidx("event_OnStart") != -1) CallLocalFunction("event_OnStart","dd", eventid, Event[eventid][Event::Style]);
+	#if defined event_OnStart
+		CallLocalFunction("event_OnStart","dd", eventid, Event[eventid][Event::Style]);
+	#endif
 	Event::StartCounterTimer = SetTimer("event_StartCounter", 1000, true);
 	return 1;
 }
