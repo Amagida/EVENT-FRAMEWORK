@@ -1,28 +1,28 @@
 #include <a_samp>
 
-new EVENTP::RangeWarning[MAX_PLAYERS];
+new eventp_RangeWarning[MAX_PLAYERS];
 
-forward EVENTP::CheckPlayerInRange(playerid);
-public EVENTP::CheckPlayerInRange(playerid)
+forward eventp_CheckPlayerInRange(playerid);
+public eventp_CheckPlayerInRange(playerid)
 {
-	if(!IsPlayerInRangeOfPoint(playerid, Event[EVENTP::JoinedID[playerid]][Event::Range], Event[EVENTP::JoinedID[playerid]][Event::x], Event[EVENTP::JoinedID[playerid]][Event::y], Event[EVENTP::JoinedID[playerid]][Event::z]))
+	if(!IsPlayerInRangeOfPoint(playerid, Event[eventp_JoinedID[playerid]][event_Range], Event[eventp_JoinedID[playerid]][event_x], Event[eventp_JoinedID[playerid]][event_y], Event[eventp_JoinedID[playerid]][event_z]))
 	{
 		GameTextForPlayer(playerid, "Stay In Event Bounds Or You Will Be Kicked From Event!", 2000, 3);
-//		EVENTP::Spawn(EVENTP::JoinedID[playerid], playerid);
-		EVENTP::RangeWarning[playerid]++;
-		EVENTP::Spawn(EVENTP::JoinedID[playerid], playerid);
-		if(EVENTP::RangeWarning[playerid] == 1)
+//		eventp_Spawn(eventp_JoinedID[playerid], playerid);
+		eventp_RangeWarning[playerid]++;
+		eventp_Spawn(eventp_JoinedID[playerid], playerid);
+		if(eventp_RangeWarning[playerid] == 1)
 		{
-			EVENTP::Spawn(EVENTP::JoinedID[playerid], playerid);
+			eventp_Spawn(eventp_JoinedID[playerid], playerid);
 		}
-		if(EVENTP::RangeWarning[playerid] >= 5)
+		if(eventp_RangeWarning[playerid] >= 5)
 		{
-			EVENTP::JoinedID[playerid] = -1;
-			EVENTP::Joined[playerid] = false; 
-			EVENTP::Spawned[playerid] = false;
-			Event[EVENTP::JoinedID[playerid]][Event::LeftPlayers]--;
-			KillTimer(EVENTP::IsInRangeChecker[playerid]);
+			eventp_JoinedID[playerid] = -1;
+			eventp_Joined[playerid] = false; 
+			eventp_Spawned[playerid] = false;
+			Event[eventp_JoinedID[playerid]][event_LeftPlayers]--;
+			KillTimer(eventp_IsInRangeChecker[playerid]);
 		}
-		//SetPlayerWorldBounds(playerid, Event[EVENTP::JoinedID[playerid]][Event::x]+20, Event[EVENTP::JoinedID[playerid]][Event::x]-20, Event[EVENTP::JoinedID[playerid]][Event::y]+20, Event[EVENTP::JoinedID[playerid]][Event::y]-20);
+		//SetPlayerWorldBounds(playerid, Event[eventp_JoinedID[playerid]][event_x]+20, Event[eventp_JoinedID[playerid]][event_x]-20, Event[eventp_JoinedID[playerid]][event_y]+20, Event[eventp_JoinedID[playerid]][event_y]-20);
 	}
 }
