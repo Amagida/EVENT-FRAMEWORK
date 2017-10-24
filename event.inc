@@ -1,11 +1,7 @@
 #include <a_samp>
 
-//NAMESPACES
-#define Event:: event_
-#define EVENTP:: eventp_
-#define EventFuncs:: eventf_
 
-stock EventFuncs::strmatch(const out1[], const out2[])
+static stock strmatch(const out1[], const out2[])
 {
 	if((strcmp(out1, out2, true, strlen(out2)) == 0) && (strlen(out2) == strlen(out1))) return true;
 	else return false;
