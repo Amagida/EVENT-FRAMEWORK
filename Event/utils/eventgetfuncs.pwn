@@ -1,50 +1,55 @@
 #include <a_samp>
 
-
-stock Event::GetInfo(eventid, argument[], out[])
+static stock strmatch(const out1[], const out2[])
 {
-	if(EventFuncs::strmatch(argument, "name"))
+	if((strcmp(out1, out2, true, strlen(out2)) == 0) && (strlen(out2) == strlen(out1))) return true;
+	else return false;
+}	
+
+stock event_GetInfo(eventid, argument[], out[])
+{
+	if(strmatch(argument, "name"))
 	{
-		format(out, 64, "%s", Event[eventid][Event::Name]);
+		format(out, 64, "%s", Event[eventid][event_Name]);
 	}
-	if(EventFuncs::strmatch(argument, "x"))
+	if(strmatch(argument, "x"))
 	{
-		format(out, 64, "%f", Event[eventid][Event::x]);
+		format(out, 64, "%f", Event[eventid][event_x]);
 	}
-	if(EventFuncs::strmatch(argument, "y"))
+	if(strmatch(argument, "y"))
 	{
-		format(out, 64, "%f", Event[eventid][Event::y]);
+		format(out, 64, "%f", Event[eventid][event_y]);
 	}
-	if(EventFuncs::strmatch(argument, "z"))
+	if(strmatch(argument, "z"))
 	{
-		format(out, 64, "%f", Event[eventid][Event::z]);
+		format(out, 64, "%f", Event[eventid][event_z]);
 	}
-	if(EventFuncs::strmatch(argument, "range"))
+	if(strmatch(argument, "range"))
 	{
-		format(out, 64, "%f", Event[eventid][Event::Range]);
+		format(out, 64, "%f", Event[eventid][event_Range]);
 	}
-	if(EventFuncs::strmatch(argument, "SpawnX"))
+	if(strmatch(argument, "SpawnX"))
 	{
-		format(out, 64, "%f", Event[eventid][Event::SpawnX]);
+		format(out, 64, "%f", Event[eventid][event_SpawnX]);
 	}
-	if(EventFuncs::strmatch(argument, "SpawnY"))
+	if(strmatch(argument, "SpawnY"))
 	{
-		format(out, 64, "%f", Event[eventid][Event::SpawnY]);
+		format(out, 64, "%f", Event[eventid][event_SpawnY]);
 	}
-	if(EventFuncs::strmatch(argument, "SpawnZ"))
+	if(strmatch(argument, "SpawnZ"))
 	{
-		format(out, 64, "%f", Event[eventid][Event::SpawnZ]);
+		format(out, 64, "%f", Event[eventid][event_SpawnZ]);
 	}
-	if(EventFuncs::strmatch(argument, "int"))
+	if(strmatch(argument, "int"))
 	{
-		format(out, 64, "%d", Event[eventid][Event::int]);
+		format(out, 64, "%d", Event[eventid][event_int]);
 	}
-	if(EventFuncs::strmatch(argument, "vw"))
+	if(strmatch(argument, "vw"))
 	{
-		format(out, 64, "%d", Event[eventid][Event::vw]);
+		format(out, 64, "%d", Event[eventid][event_vw]);
 	}
-	if(EventFuncs::strmatch(argument, "maxplayers"))
+	if(strmatch(argument, "maxplayers"))
 	{
-		format(out, 64, "%d", Event[eventid][Event::MaxPlayers]);
+		format(out, 64, "%d", Event[eventid][event_MaxPlayers]);
 	}
 }
