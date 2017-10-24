@@ -1,56 +1,56 @@
 #include <a_samp>
 
-forward Event::Start(eventid, intime);
-forward Event::OnStart(eventid, style);
+forward event_Start(eventid, intime);
+forward event_OnStart(eventid, style);
 
-new Event::StartTime, Event::StartCounterTimer, Event::CheckWinerTimer;
-forward Event::StartCounter();
+new event_StartTime, event_StartCounterTimer, event_CheckWinerTimer;
+forward event_StartCounter();
 
-stock Event::Start(eventid, intime)
+stock event_Start(eventid, intime)
 {
-	Event[eventid][Event::Started] = true;
-	Event::StartTime = intime;
+	Event[eventid][event_Started] = true;
+	event_StartTime = intime;
 	#if defined event_OnStart
-		CallLocalFunction("event_OnStart","dd", eventid, Event[eventid][Event::Style]);
+		CallLocalFunction("event_OnStart","dd", eventid, Event[eventid][event_Style]);
 	#endif
-	Event::StartCounterTimer = SetTimer("event_StartCounter", 1000, true);
+	event_StartCounterTimer = SetTimer("event_StartCounter", 1000, true);
 	return 1;
 }
 
-public Event::StartCounter()
+public event_StartCounter()
 {
-	if(Event::StartTime == 0)
+	if(event_StartTime == 0)
 	{
-		KillTimer(Event::StartCounterTimer);
+		KillTimer(event_StartCounterTimer);
 		for(new i; i<MAX_PLAYERS;i++)
 		{
-			if(EVENTP::Joined[i])
+			if(eventp_Joined[i])
 			{
-				if(Event[EVENTP::JoinedID[i]][Event::LeftPlayers] == 1)
+				if(Event[eventp_JoinedID[i]][event_LeftPlayers] == 1)
 				{
 					SendClientMessage(i, -1, "You were the only one who joined event. Event Canceled");
 					TogglePlayerControllable(i, true);
-					Event[EVENTP::JoinedID[i]][Event::Started] = false;
+					Event[eventp_JoinedID[i]][event_Started] = false;
 					SpawnPlayer(i);
 
 				}
 				else
 				{
 					TogglePlayerControllable(i, true);
-					Event[EVENTP::JoinedID[i]][Event::PlayerCantJoin] = true;
-					Event::CheckWinerTimer = SetTimer("event_CheckWinner", 100, true);
+					Event[eventp_JoinedID[i]][event_PlayerCantJoin] = true;
+					event_CheckWinerTimer = SetTimer("event_CheckWinner", 100, true);
 				}
 			}
 		}
 	}
 	for(new i; i<MAX_PLAYERS;i++)
 	{
-		if(EVENTP::Joined[i])
+		if(eventp_Joined[i])
 		{
 			new string[120];
-			format(string, sizeof(string), "EVENT STARING IN %d SECOND", Event::StartTime);
+			format(string, sizeof(string), "EVENT STARING IN %d SECOND", event_StartTime);
 			GameTextForPlayer(i, string, 1000, 1);
 		}
 	}
-	Event::StartTime--;
+	event_StartTime--;
 }
