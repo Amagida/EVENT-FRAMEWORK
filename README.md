@@ -3,22 +3,22 @@ Create Your Own Death Match Event Easily!
 
 # FUNCTIONS
 
-**Event::Create(Name[], Float:x, Float:y, Float:z, Float:SpawnX, Float:SpawnY, Float:SpawnZ, Float:range, vw, int, style, MaxPlayers);**
+**event_Create(Name[], Float:x, Float:y, Float:z, Float:SpawnX, Float:SpawnY, Float:SpawnZ, Float:range, vw, int, style, MaxPlayers);**
 
-**EVENTP::Join(eventid, playerid);**
+**eventp_Join(eventid, playerid);**
 
-**EVENTP::Spawn(eventid, playerid);**
+**eventp_Spawn(eventid, playerid);**
 
-**Event::Start(eventid, intime);**
+**event_Start(eventid, intime);**
 
-**Event::StartCounter();**
+**event_StartCounter();**
 
-**EVENTP::CheckPlayerInRange(playerid);**
+**eventp_CheckPlayerInRange(playerid);**
 
 # CALLBACKS
 
-**EVENTP::OnPlayerJoin(playerid, eventid, style);**
+**eventp_OnPlayerJoin(playerid, eventid, style);**
 
-**Event::OnStart(eventid, style);**
+**event_OnStart(eventid, style);**
 
-**Event::OnCreate(eventid, Float:x, Float:y, Float:z, Float:SpawnX, Float:SpawnY, Float:SpawnZ, Float:range, vw, int, style, MaxPlayers);**
+**event_OnCreate(eventid, Float:x, Float:y, Float:z, Float:SpawnX, Float:SpawnY, Float:SpawnZ, Float:range, vw, int, style, MaxPlayers);**
