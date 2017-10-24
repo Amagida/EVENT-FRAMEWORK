@@ -1,25 +1,25 @@
 #include <a_samp>
 
-forward EVENTP::OnPlayerWin(playerid, eventid);
+forward eventp_OnPlayerWin(playerid, eventid);
 
-forward Event::CheckWinner();
-public Event::CheckWinner()
+forward event_CheckWinner();
+public event_CheckWinner()
 {
 	for(new i; i<MAX_PLAYERS; i++)
 	{
-		if(Event[EVENTP::JoinedID[i]][Event::LeftPlayers] == 1)
+		if(Event[eventp_JoinedID[i]][event_LeftPlayers] == 1)
 		{
 			#if defined eventp_OnPlayerWin
-				CallLocalFunction("eventp_OnPlayerWin","dd", i, EVENTP::JoinedID[i]);
+				CallLocalFunction("eventp_OnPlayerWin","dd", i, eventp_JoinedID[i]);
 			#endif
-			Event[EVENTP::JoinedID[i]][Event::Started] = false;
-			Event[EVENTP::JoinedID[i]][Event::PlayerCantJoin] = false;
-			Event[EVENTP::JoinedID[i]][Event::LeftPlayers] = 0;
-			EVENTP::Joined[i] = false;
-			EVENTP::Spawned[i] = false;
-			EVENTP::JoinedID[i] = -1;			
+			Event[eventp_JoinedID[i]][event_Started] = false;
+			Event[eventp_JoinedID[i]][event_PlayerCantJoin] = false;
+			Event[eventp_JoinedID[i]][event_LeftPlayers] = 0;
+			eventp_Joined[i] = false;
+			eventp_Spawned[i] = false;
+			eventp_JoinedID[i] = -1;			
 			SpawnPlayer(i);
-			KillTimer(Event::CheckWinerTimer);
+			KillTimer(event_CheckWinerTimer);
 		}
 	}
 }
