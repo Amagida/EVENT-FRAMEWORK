@@ -3,13 +3,13 @@
 
 public OnPlayerDeath(playerid, killerid, reason)
 {
-	if(EVENTP::Joined[playerid])
+	if(eventp_Joined[playerid])
 	{
-		Event[EVENTP::JoinedID[playerid]][Event::LeftPlayers]--;	
-		EVENTP::Joined[playerid] = false;
-		EVENTP::Spawned[playerid] = false;
-		EVENTP::JoinedID[playerid] = -1;
-		KillTimer(EVENTP::IsInRangeChecker[playerid]);
+		Event[eventp_JoinedID[playerid]][event_LeftPlayers]--;	
+		eventp_Joined[playerid] = false;
+		eventp_Spawned[playerid] = false;
+		eventp_JoinedID[playerid] = -1;
+		KillTimer(eventp_IsInRangeChecker[playerid]);
 	}
 
 	#if defined Event_OnGameModeInit
