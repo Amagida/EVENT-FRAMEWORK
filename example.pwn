@@ -1,11 +1,9 @@
 /*
 	Example Script For EVENT System FrameWork
-	Created By Amagida (Codeah)
+	Created By Amagida
 */	
 #include <a_samp>
 #include <zcmd> //https://pastebin.com/SbJc7iXa
-#include <colors> //https://github.com/Amagida/colors-library
-#include <colorlist> //https://github.com/Amagida/colors-library
 #include <event> //https://github.com/Amagida/EVENT-FRAMEWORK
 
 new DeagleEvent;
@@ -30,8 +28,8 @@ public Event::OnStart(eventid, style)
 {
 	new eventname[126], string[126];
     Event::GetInfo(eventid, "name", eventname);
-    format(string, sizeof(string), "%s %s %s Daiwyo! Event-shi Shesasvlelad Gamoiyenet %s /joindglevent %s !", SCOLOR<RED>, eventname, SCOLOR<WHITE>, SCOLOR<RED>, SCOLOR<WHITE>);
-	SendClientMessageToAll(COLOR<WHITE>, string);
+    format(string, sizeof(string), "%s Started! For Joining Event Write /joindglevent!", eventname);
+	SendClientMessageToAll(-1, string);
 	return 1;
 }
 
@@ -39,15 +37,15 @@ public EVENTP::OnPlayerJoin(playerid, eventid, style)
 {
 	new eventname[126], string[126];
     Event::GetInfo(eventid, "name", eventname);
-    format(string, sizeof(string), "Tqven Daukavshirdit %s %s %s! Tqven Gadmogecat Desert Eagle Event-ze Satamashod !", SCOLOR<RED>, eventname, SCOLOR<WHITE>, SCOLOR<RED>, SCOLOR<WHITE>);
-	SendClientMessage(playerid, COLOR<WHITE>, string);
+    format(string, sizeof(string), "You Joined Event: %s! You got desert eagle for playing on event!",eventname);
+	SendClientMessage(playerid, -1, string);
 	GivePlayerWeapon(playerid, 24, 9999);
 	return 1;
 }
 
 public EVENTP::OnPlayerWin(playerid, eventid)
 {
-	SendClientMessage(playerid, COLOR<RED>, "Tqven Moiget Event-i!");
+	SendClientMessage(playerid, 64, "You won event!");
 	return 1;
 }
 
